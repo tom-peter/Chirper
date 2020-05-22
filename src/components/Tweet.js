@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { formatTweet, formatDate } from '../utils/helpers';
 import { handleToggleTweet } from '../actions/tweets';
@@ -26,11 +27,12 @@ export class Tweet extends Component {
   
   toParent = (e, id) => {
     e.preventDefault();
-    // TODO: redirect to the parent tweet
+    // redirect to the parent tweet
+    this.props.history.push(`/tweet/${id}`);
   };
 
   render() {
-    const { tweet } = this.props;
+    const { tweet, id } = this.props;
 	
     if (tweet === null) {
       return <p>This tweet doesn't exist</p>;
@@ -49,7 +51,7 @@ export class Tweet extends Component {
     } = tweet;
 
     return (
-      <div className="tweet">
+      <Link to={`/tweet/${id}`} className="tweet">
         <img src={avatar} alt={`Avatar of ${name}`} className="avatar" />
 		
         <div className="tweet-info">
@@ -82,7 +84,7 @@ export class Tweet extends Component {
             <span>{likes !== 0 && likes}</span>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }
@@ -105,4 +107,7 @@ function mapStateToProps({ authedUser, users, tweets }, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(Tweet);
+// wrap the export in withRouter, which will pass our connected component 
+// (which will pass our Tweet component) to the Router props
+// which allows us to use this.props.history.push
+export default withRouter(connect(mapStateToProps)(Tweet));
