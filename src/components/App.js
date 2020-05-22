@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
+import Dashboard from './Dashboard';
 
 class App extends Component {
   
@@ -9,13 +10,22 @@ class App extends Component {
     this.props.dispatch(handleInitialData());
   }
 
+  // only render the Dashboard, once the initial data has been loaded
+  // (invocation of handleInitialData has been finished)
   render() {
     return (
       <div>
-        Starter Code
+        {this.props.loading === true ? null : <Dashboard />}
       </div>
-    )
+    )  
   }
 }
 
-export default connect()(App);
+// set loading for the render check: if authedUser === null, return loading = true
+function mapStateToProps({ authedUser }) {
+  return {
+    loading: authedUser === null
+  };
+}
+
+export default connect(mapStateToProps)(App);
