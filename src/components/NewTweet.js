@@ -40,7 +40,9 @@ class NewTweet extends Component {
 
     return (
       <div>
-        <h3 className="center">Compose new tweet</h3>
+        <h3 className="center">
+          {this.props.id ? 'Reply to tweet' : 'Compose new tweet'}
+        </h3>
         <form className="new-tweet" onSubmit={this.handleSubmit}>
           <textarea
             placeholder="What's happening?"
