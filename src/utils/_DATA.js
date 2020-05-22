@@ -16,6 +16,12 @@ let users = {
     name: "Dan Abramov",
     avatarURL: "https://tylermcginnis.com/would-you-rather/dan.jpg",
     tweets: ['5w6k1n34dkp1x29cuzn2zn', 'czpa59mg577x1oo45cup0d', 'omdbjl68fxact38hk7ypy6', '3km0v4hf1ps92ajf4z2ytg', 'njv20mq7jsxa6bgsqc97', 'sfljgka8pfddbcer8nuxv', 'r0xu2v1qrxa6ygtvf2rkjw'],
+  },
+  johndoe: {
+    id: "johndoe",
+    name: "John Doe",
+    avatarURL: "https://tylermcginnis.com/would-you-rather/tyler.jpg",
+    tweets: [],
   }
 }
 
